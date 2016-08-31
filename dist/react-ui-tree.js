@@ -10,7 +10,8 @@ module.exports = React.createClass({
   propTypes: {
     tree: React.PropTypes.object.isRequired,
     paddingLeft: React.PropTypes.number,
-    renderNode: React.PropTypes.func.isRequired
+    renderNode: React.PropTypes.func.isRequired,
+    handleClass: React.PropTypes.string
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -83,7 +84,8 @@ module.exports = React.createClass({
         paddingLeft: this.props.paddingLeft,
         onDragStart: this.dragStart,
         onCollapse: this.toggleCollapse,
-        dragging: dragging && dragging.id
+        dragging: dragging && dragging.id,
+        handleClass: this.props.handleClass
       })
     );
   },
@@ -105,6 +107,7 @@ module.exports = React.createClass({
     window.addEventListener('mousemove', this.drag);
     window.addEventListener('mouseup', this.dragEnd);
   },
+
 
   // oh
   drag: function drag(e) {

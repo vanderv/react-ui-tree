@@ -47,7 +47,8 @@ var Node = React.createClass({
             dragging: dragging,
             paddingLeft: _this.props.paddingLeft,
             onCollapse: _this.props.onCollapse,
-            onDragStart: _this.props.onDragStart
+            onDragStart: _this.props.onDragStart,
+            handleClass: _this.props.handleClass
           });
         })
       );
@@ -82,6 +83,12 @@ var Node = React.createClass({
     if (this.props.onCollapse) this.props.onCollapse(nodeId);
   },
   handleMouseDown: function handleMouseDown(e) {
+    if (this.props.handleClass) {
+      var re = new RegExp(this.props.handleClass, "i");
+      if (!e.target.className.match(re)) {
+        return;
+      }
+    }
     var nodeId = this.props.index.id;
     var dom = this.refs.inner;
 
